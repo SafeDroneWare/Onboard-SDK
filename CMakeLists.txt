@@ -11,6 +11,9 @@ include(${CMAKE_MODULE_PATH}/DJIConfig.cmake)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/libs)
 
+# Build static or shared libs?
+option(BUILD_SHARED_LIBS "Global flag to cause add_library to create shared libraries if on" ON)
+
 # Set test related flags
 option(GTEST "Build with Google Test framework" OFF)
 

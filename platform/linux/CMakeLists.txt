@@ -10,3 +10,26 @@ FILE(GLOB SOURCE_FILES inc/*.h src/*.cpp)
 add_library(${PROJECT_NAME} ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} djiosdk-core)
 
+#############
+## Install ##
+#############
+
+install(
+  DIRECTORY inc/
+  DESTINATION include/dji
+)
+
+install(
+  TARGETS ${PROJECT_NAME}
+  EXPORT ${PROJECT_NAME}
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin
+)
+
+install(
+  EXPORT ${PROJECT_NAME}
+  DESTINATION lib/cmake/${PROJECT_NAME}
+  FILE ${PROJECT_NAME}Config.cmake
+)
+
