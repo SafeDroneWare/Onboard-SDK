@@ -38,6 +38,6 @@
 //! @todo Not supported in this release.
 //#define USE_SIMULATION
 
-#include <DJI_Version.h>
+#include "DJI_Version.h"
 
 #endif // DJI_CONFIG_H
