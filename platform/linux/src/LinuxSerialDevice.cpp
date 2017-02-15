@@ -62,6 +62,13 @@ void LinuxSerialDevice::init() {
   }
 }
 
+void LinuxSerialDevice::close() {
+  API_LOG(this, STATUS_LOG, "Closing device %s...\n",
+      m_device.c_str());
+  (void) _serialClose();
+  deviceStatus = false;
+}
+
 bool LinuxSerialDevice::getDeviceStatus()
 {
   return deviceStatus;
@@ -208,7 +215,7 @@ bool LinuxSerialDevice::_serialOpen(const char* dev) {
 
 
 bool LinuxSerialDevice::_serialClose() {
-  close(m_serial_fd);
+  ::close(m_serial_fd);
   m_serial_fd = -1;
   return true;
 }

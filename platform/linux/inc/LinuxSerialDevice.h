@@ -39,10 +39,11 @@ namespace onboardSDK {
 class LinuxSerialDevice : public HardDriver {
 
   public:
-    LinuxSerialDevice(std::string device, unsigned int baudrate);
+    LinuxSerialDevice(std::string device = std::string(), unsigned int baudrate = 0);
     ~LinuxSerialDevice();
 
     void init();
+    void close();
     bool getDeviceStatus();
 
     void setBaudrate(unsigned int baudrate);
