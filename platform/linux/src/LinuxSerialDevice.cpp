@@ -201,11 +201,11 @@ int LinuxSerialDevice::_checkBaudRate(uint8_t (&buf)[BUFFER_SIZE])
 }
 
 bool LinuxSerialDevice::_serialOpen(const char* dev) {
-#ifdef __arm__  
-  m_serial_fd = open(dev, O_RDWR | O_NONBLOCK );
-#elif __x86_64__
+//#ifdef __arm__  
+//  m_serial_fd = open(dev, O_RDWR | O_NONBLOCK );
+//#elif __x86_64__
    m_serial_fd = open(dev, O_RDWR | O_NOCTTY );
-#endif
+//#endif
   if(m_serial_fd < 0) {
     API_LOG(this, ERROR_LOG, "cannot open device %s\n", dev);
     return false;
@@ -315,7 +315,7 @@ bool LinuxSerialDevice::_serialConfig(int baudrate, char data_bits, char parity_
 
   /* config waiting time & min number of char */
   //! If you just want to see if there is data on the line, put the serial config in an unconditional timeout state
-#if __x86_64__
+//#if __x86_64__
   if (testForData)
   {
     newtio.c_cc[VTIME]  = 8;
@@ -326,7 +326,7 @@ bool LinuxSerialDevice::_serialConfig(int baudrate, char data_bits, char parity_
     newtio.c_cc[VTIME]  = 1;
     newtio.c_cc[VMIN] = 18;
   }
-#endif
+//#endif
   /* using the raw data mode */
   newtio.c_lflag  &= ~(ICANON | ECHO | ECHOE | ISIG);
   newtio.c_oflag  &= ~OPOST;
